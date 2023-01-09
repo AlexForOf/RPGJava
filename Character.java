@@ -39,7 +39,7 @@ public class Character {
         this.Stamina = maxStamina;
         this.Mana = maxMana;
             
-        this.team = rollDice(3, 1);
+        this.team = rollDice(2, 1);
         
     }
 
@@ -47,7 +47,7 @@ public class Character {
         this.isHero = false;
         this.isMonster = false;
 
-        this.maxHP = rollDice(6, 3);
+        this.maxHP = rollDice(8, 3);
         this.maxStamina = rollDice(6, 2);
         this.maxMana = rollDice(6, 1);
 
@@ -133,7 +133,7 @@ public class Character {
         else return false;
     }
 
-    Character callAlly(){
+    void callAlly(){
         if(allies.size() == 0){
             System.out.println("You don't have allies");
         }else{
@@ -144,10 +144,10 @@ public class Character {
             }
             respond = scan.nextInt();
             if(respond > 0 && respond < allies.size() + 1){
-                return allies.get(respond - 1);
+                this.characterHelps = allies.get(respond - 1);
+                this.characterHelps.engagedOn = this.engagedOn;
             }          
         }
-        return null;
     }
 
     boolean nextEncounter(){

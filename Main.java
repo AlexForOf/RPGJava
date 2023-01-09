@@ -25,6 +25,7 @@ public class Main {
     static void movement(){
         while(currentEncounter < encounters.length && hero.HP > 0){
             System.out.println("You are moving forward to " + currentEncounter);
+            System.out.println("Encounters number = " + encounters.length);
 
             hero.engagedOn = encounters[currentEncounter];
             encounters[currentEncounter].engagedOn = hero;
@@ -56,6 +57,7 @@ public class Main {
                     else{
                         if(hero.isAlly()){
                             System.out.println("This is your ally, he will join you in your journey");
+                            hero.allies.add(hero.engagedOn);
                             finishedEncounter = true;
                         }else{
                             System.out.println("This is non-friendly character, so he attacked you");
@@ -82,6 +84,7 @@ public class Main {
     static void combat(){
         int turn = 0;
         System.out.println("You are in the combat with: " + (hero.engagedOn.isMonster ? "Monster" : "Character"));
+        System.out.println("Exp to earn: " + hero.engagedOn.expToEarn);
         while(hero.engagedOn.HP > 0 && hero.HP > 0){
 
             if(turn == 0){
@@ -153,7 +156,7 @@ public class Main {
             hero.Mana = hero.maxMana;
             if(hero.engagedOn.inventory != null){
                 for (int i = 0; i < hero.engagedOn.inventory.size(); i++) {
-                    System.out.println("You've taken the " + hero.engagedOn.inventory.get(i) + " from defeated enemy's inventory");
+                    System.out.println("You've taken the " + hero.engagedOn.inventory.get(i).name + " from defeated enemy's inventory");
                     hero.inventory.add(hero.engagedOn.inventory.get(i));
                 }
             }

@@ -17,4 +17,8 @@ public class Monster extends Character{
 
         this.isMonster = true;
     }
+
+    int getExp(){
+        return expToEarn;
+    }
 }
